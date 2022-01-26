@@ -10,6 +10,7 @@
 /test/version_tmp/
 /tmp/
 /output/
+/synthea_output/
 /export/
 
 .DS_Store
