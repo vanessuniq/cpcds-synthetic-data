@@ -1,6 +1,7 @@
 *.gem
 *.rbc
 /.config
+/.vscode
 /coverage/
 /InstalledFiles
 /pkg/
@@ -9,6 +10,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/input/
 /output/
 /synthea_output/
 /export/
