@@ -16,7 +16,8 @@
 /export/
 
 .DS_Store
-
+# Ignore synthea
+synthea
 # Ignore Byebug command history file.
 .byebug_history
 

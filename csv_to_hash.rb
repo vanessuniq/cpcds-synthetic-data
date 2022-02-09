@@ -2,13 +2,13 @@ require 'CSV'
 require 'json'
 require 'fileutils'
 
-STNTHEA_DATA_DIR = 'synthea_output/cpcds'
+SYNTHEA_DATA_DIR = 'synthea_output/cpcds'
 BASE_OUTPUT_DIR = 'input'
 # This method will convert synthea cpcds data output
 # from csv to json and output them in the /input folder
 
 def convert_to_json
-  file_path = File.join(__dir__, STNTHEA_DATA_DIR, '*.csv')
+  file_path = File.join(__dir__, SYNTHEA_DATA_DIR, '*.csv')
   filenames = Dir.glob(file_path)
   filenames.each do |file|
     csv = CSV.new(File.read(file), :headers => true, :header_converters => :symbol, :converters => :all)
