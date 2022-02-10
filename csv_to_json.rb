@@ -1,31 +1,31 @@
-require 'CSV'
+require 'csv'
 require 'json'
 require 'fileutils'
 
 SYNTHEA_DATA_DIR = 'synthea_output/cpcds'
 BASE_OUTPUT_DIR = 'input'
+
+# Remove the input dir then create it again
+FileUtils.rm_rf(BASE_OUTPUT_DIR)
+FileUtils.mkdir_p BASE_OUTPUT_DIR
+
 # This method will convert synthea cpcds data output
 # from csv to json and output them in the /input folder
-
 def convert_to_json
   file_path = File.join(__dir__, SYNTHEA_DATA_DIR, '*.csv')
   filenames = Dir.glob(file_path)
   filenames.each do |file|
     csv = CSV.new(File.read(file), :headers => true, :header_converters => :symbol, :converters => :all)
-    json_data = csv.to_a.map { |row| JSON.generate(row.to_hash) }
-    output_dir = File.join(BASE_OUTPUT_DIR, category(file))
-    FileUtils.mkdir_p output_dir
+    hash_data = csv.to_a.map { |row| row.to_hash }
 
-    json_data.each_with_index do |data, index|
-      json_path = File.join(output_dir, "#{category(file).chop}0#{index}.json")
-      File.open(json_path, 'w') do |f|
-        f.write(data)
-      end
+    output_path = File.join(BASE_OUTPUT_DIR, "#{category(file)}.json") 
+    File.open(output_path, 'w') do |f|
+      f.write(JSON.generate(hash_data))
     end
-    # puts json_data
   end
 end
 
+# Helper method to determine the output directory of the converted array of hashes
 def category(file)
   if file.include?('Claims')
     'claims'
