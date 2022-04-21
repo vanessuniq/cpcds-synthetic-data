@@ -1,0 +1,23 @@
+[
+    {
+        "practitioner_npi": 191185846468,
+        "name": "Dr. Liz413 Sporer811",
+        "organization_npi": 451747647101,
+        "code": "provider",
+        "specialty": "GENERAL PRACTICE"
+    },
+    {
+        "practitioner_npi": 216123599486,
+        "name": "Dr. Dinah304 Schaefer657",
+        "organization_npi": 211314788943,
+        "code": "provider",
+        "specialty": "GENERAL PRACTICE"
+    },
+    {
+        "practitioner_npi": 214255811468,
+        "name": "Dr. Edelmira985 Abshire638",
+        "organization_npi": 320226818851,
+        "code": "provider",
+        "specialty": "GENERAL PRACTICE"
+    }
+]

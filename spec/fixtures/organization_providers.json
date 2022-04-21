@@ -1,0 +1,32 @@
+[
+    {
+        "id": 451747647101,
+        "name": "PCP22771",
+        "address": "21 MARKET ST",
+        "city": "IPSWICH",
+        "state": "MA",
+        "zip": "01938-2240",
+        "phone": "978-356-3015",
+        "type": null
+    },
+    {
+        "id": 211314788943,
+        "name": "BEVERLY HOSPITAL CORPORATION",
+        "address": "85 HERRICK STREET",
+        "city": "BEVERLY",
+        "state": "MA",
+        "zip": 1915,
+        "phone": 9789223000,
+        "type": "Acute Care Hospitals"
+    },
+    {
+        "id": 320226818851,
+        "name": "BRUSH HILL CARE CENTER",
+        "address": "1200 BRUSH HILL ROAD",
+        "city": "MILTON",
+        "state": "MA",
+        "zip": 2186,
+        "phone": 6173330600,
+        "type": null
+    }
+]

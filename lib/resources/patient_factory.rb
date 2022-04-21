@@ -17,18 +17,21 @@ module Patient
 
     def build
       FHIR::Patient.new(
-        id: @fhir_patient.id,
+        id: @fhir_patient[:id],
         meta: meta,
         language: 'en-US',
-        text: @fhir_patient.text,
+        text: @fhir_patient[:text],
         identifier: [identifier],
-        name: @fhir_patient.name,
-        telecom: @fhir_patient.telecom,
-        gender: @fhir_patient.gender,
-        birthDate: @fhir_patient.birthDate,
-        address: @fhir_patient.address.map { |item| item.district = @cpcds_patient.home_county },
-        maritalStatus: @fhir_patient.maritalStatus,
-        communication: @fhir_patient.communication
+        name: @fhir_patient[:name],
+        telecom: @fhir_patient[:telecom],
+        gender: @fhir_patient[:gender],
+        birthDate: @fhir_patient[:birthDate],
+        address: @fhir_patient[:address].map do |item|
+          item[:district] = @cpcds_patient[:home_county]
+          item
+        end,
+        maritalStatus: @fhir_patient[:maritalStatus],
+        communication: @fhir_patient[:communication]
       )
     end
 
@@ -43,9 +46,10 @@ module Patient
 
     def identifier
       FHIR::Identifier.new(
-        type: codeable_concept(PATIENT_IDENTIFIER_TYPE_SYSTEM, PATIENT_IDENTIFIER_TYPE_CODE, PATIENT_IDENTIFIER_TYPE_DISPLAY, PATIENT_IDENTIFIER_TYPE_TEXT),
+        type: codeable_concept(PATIENT_IDENTIFIER_TYPE_SYSTEM, PATIENT_IDENTIFIER_TYPE_CODE,
+                               PATIENT_IDENTIFIER_TYPE_DISPLAY, PATIENT_IDENTIFIER_TYPE_TEXT),
         system: PATIENT_IDENTIFIER_SYSTEM,
-        value: cpcds_patient.member_id
+        value: cpcds_patient[:member_id]
       )
     end
 
@@ -53,6 +57,14 @@ module Patient
       FHIR::CodeableConcept.new(
         coding: [coding(system, code, display)],
         text: text
+      )
+    end
+
+    def coding(system, code, display)
+      FHIR::Coding.new(
+        system: system,
+        code: code,
+        display: display
       )
     end
   end
